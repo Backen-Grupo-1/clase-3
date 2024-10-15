@@ -1,0 +1,175 @@
+#Ejemplo Bloque A
+
+#1. Cree una lista inicial de productos fija
+productos = ['zapatillas','chalecos','zapatos','pantalones']
+#2. Solicita al usuario que garegue tres nuevos productos
+for i in range(3):
+    nuevo_producto = input('Ingrese nuevo producto: ')
+    productos.append(nuevo_producto)
+
+print('El inventario de producto es',productos)
+
+#3. Elimina un producto en especifico
+producto_a_eliminar = input('Ingrese el nombre del producto a eliminar: ')
+productos.remove(producto_a_eliminar)
+
+print('El inventario de producto es',productos)
+
+#4. Ordena la lista en orden alfabetico
+productos.sort()
+
+print('El inventario de producto es',productos)
+
+#5. Muestra el primer y ultimo producto en nombre alfabetico
+print('Primer elemento:',productos[0])
+print('Ultimo elemento:',productos[-1])
+
+#Trabajo Grupal - Ejercicio 1 - Bloque A
+
+#a. Crear una lista con los siguientes numeros: 10, 20, 5, 60, 20, 10 (en ese orden)
+numeros = [10,20,5,60,20,10]
+
+#b. Determine el rango del conjunto de numeros
+print(min(numeros))
+print(max(numeros))
+
+#c. Determine el promedio haciendo uso del ciclo for
+suma = 0
+cantidad = 0
+
+for i in numeros:
+    suma = suma + i
+    cantidad = cantidad + 1
+
+promedio = suma / cantidad
+
+print(promedio)
+
+#d. Determine el promedio haciendo uso de las funciones genericas que aplican sobre la lista
+promedio = sum(numeros)/len(numeros)
+
+print(promedio)
+
+#Trabajo Grupal - Ejercicio 2- Bloque A
+
+#a. Crear un programa que solicite el nombre de cada uno de los cinco estudiantes. Para cada estudiante, solicite tres notas.
+save_nombre = []
+notas = []
+
+for i in range(5):
+    nombre = input('Ingrese nombre: ')
+    save_nombre.append(nombre)
+
+    for i in range(3):
+        notas.append(int(input('Ingrese notas: ')))
+
+    break
+
+
+
+#b. Almacenar los datos de cada estudiante (nombre y lista de notas) en una lista de listas.
+
+
+#c. Calcular el promedio de notas para cada estudiante. Mostrar el nombre de cada estudiante junto con su promedio.
+
+#Ejemplo - Bloque B
+#1. Cree un diccionario llamado inventario que representará el inventariode la tienda. El inventario deberá contener nombre, cantidad y precio de tres productos.
+inventario = {
+    'chaqueta-01': {'cantidad':20, 'precio':20990},
+    'pantalon-01': {'cantidad':10, 'precio':19990}
+}
+#2. Actualizar la cantidad de un producto solicitando los datos al usuario (nombre de producto a actualizar, y cantidad).
+for i in range(2):
+    nombre = input('Ingrese el nombre del producto: ')
+    cantidad = int(input('Ingrese el cantidad del producto: '))
+    precio = int(input('Ingrese el precio del producto: '))
+
+    if nombre not in inventario:
+        inventario[nombre] = {'cantidad': cantidad, 'precio': precio}
+    else:
+        'Error: producto ya existente'
+print(inventario)
+
+#3. Mostrar el inventario completo recorriendo el diccionario.
+print('Inventario completo: ')
+for nombre in inventario:
+    print('Producto:', nombre, 'Cantidad:', inventario[nombre]['cantidad'], 'Precio:',inventario[nombre]['precio'])
+
+#Trabajo Grupal - Ejercicio 1 - Bloque B
+#a. Solicita al usuario los datos de cada persona. Cada persona debe ser almacenada en un diccionario con las claves "nombre" y "apellido".
+#b. Guarda cada diccionario en una lista llamada personas. Cada vez que se ingresen los datos de una persona, crea un diccionario y agrégalo a la lista personas.
+#c. El programa debe continuar solicitando datos hasta que el usuario ingrese "FIN" como nombre.
+#d. Mostrar la lista de personas. Recorre la lista personas e imprime el nombre y apellido de cada persona registrada.
+
+personas = []
+flag = True
+
+while flag:
+    persona = {'nombre':'','apellido':''}
+    nombre = input('Introduce nombre: ')
+    if nombre == 'FIN':
+        flag = False
+    else:
+        apeliido = input('Introduce apellido: ')
+        persona['nombre'] = nombre
+        persona['apellido'] = apeliido
+        personas.append(persona)
+
+for persona in personas:
+    print(f'Mi nombre es: {persona['nombre']} y mi apellido es: {persona['apellido']}') 
+
+#Trabajo Grupal - Ejercicio 2 - Bloque B
+# • Incrementar la funcionalidad del programa anterior permitiendo que ahora cada persona cuente con cursos inscritos.
+# • Es decir, necesitamos que cada persona contenga un diccionario con claves correspondientes a cursos y cada clave con una lista con las notas de dicho curso.
+# • Todos los datos deben ser solicitados por la entrada estándar. Puede considerar ingresar un curso por persona. Cada curso tendrá 3 notas.
+# • Al finalizar, el programa debe imprimir el nombre y apellido, seguido del listado de cursos y los promedios obtenidos en cada curso.
+
+personas = []
+flag = True
+
+while flag:
+    persona = {'nombre':'','apellido':''}
+    nombre = input('Introduce nombre: ')
+    if nombre == 'FIN':
+        flag = False
+    else:
+        apeliido = input('Introduce apellido: ')
+        persona['nombre'] = nombre
+        persona['apellido'] = apeliido
+        personas.append(persona)
+
+for persona in personas:
+    curso = input('Introduce el nombre del curso: ')
+    lista_notas = []
+    for nota in range(3):
+        nota = float(input('Introduce la nota: '))
+        lista_notas.append(nota)
+    cursos = {curso : lista_notas}
+
+#Ejercicio 2 por Profe
+personas = []
+flag = True
+while flag:
+    nombre = input('Ingrese nomnre (o FIN para terminar): ')
+    if nombre == 'FIN':
+        flag = False
+    else:
+        apellido = input('Ingrese apellido: ')
+        persona = {'nombre': nombre, 'apellido': apellido, 'cursos': {}}
+        curso = input('Ingrese codigo curso: ')
+        lista_notas = []
+        for i in range(3):
+            nota = float(input('Ingrese nota ' + str(i+1) + ':'))
+            lista_notas.append(nota)
+        persona['cursos'][curso] = lista_notas
+
+        personas.append(persona)
+
+        print(personas)
+
+print('Personas registradas')
+for persona in personas:
+    print('nombre:', persona['nombre'], 'apellido:', persona['apellido'])
+    for codigo_curso in persona['cursos']:
+        promedio = sum(persona['cursos'][codigo_curso]) / len(persona['cursos'][codigo_curso])
+        print('promedio:', promedio)
